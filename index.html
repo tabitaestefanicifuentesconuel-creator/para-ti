@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💖</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #050510, #1a0a20, #050510);
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .elemento {
+            position: absolute;
+            color: #ff6699;
+            font-weight: 700;
+            font-size: clamp(1.2rem, 4vw, 2.2rem);
+            text-shadow: 0 0 8px #ff6699, 0 0 16px #ff99bb;
+            white-space: nowrap;
+            opacity: 0;
+            animation: caer 5s linear forwards;
+        }
+        .corazon {
+            color: #ff4d88;
+            text-shadow: 0 0 8px #ff4d88, 0 0 16px #ff88aa;
+        }
+        .flor {
+            color: #ffb3ba;
+            text-shadow: 0 0 8px #ffb3ba, 0 0 16px #ffc2d1;
+        }
+        @keyframes caer {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const elementos = [
+            "I LOVE YOU MY GIRL",
+            "💖",
+            "🌸",
+            "💖",
+            "I LOVE YOU MY GIRL",
+            "🌸",
+            "💖",
+            "I LOVE YOU MY GIRL"
+        ];
+        const cantidad = 120;
+
+        function crearElemento() {
+            const elemento = document.createElement('div');
+            elemento.classList.add('elemento');
+            
+            const seleccion = elementos[Math.floor(Math.random() * elementos.length)];
+            elemento.innerText = seleccion;
+            
+            if (seleccion === "💖") {
+                elemento.classList.add('corazon');
+            } else if (seleccion === "🌸") {
+                elemento.classList.add('flor');
+            }
+
+            elemento.style.left = `${Math.random() * 100}%`;
+            elemento.style.animationDelay = `${Math.random() * 5}s`;
+            elemento.style.animationDuration = `5s`;
+            elemento.style.fontSize = `${Math.random() * 10 + 18}px`;
+
+            document.body.appendChild(elemento);
+
+            setTimeout(() => {
+                elemento.remove();
+                crearElemento();
+            }, 5000);
+        }
+
+        for(let i = 0; i < cantidad; i++){
+            setTimeout(crearElemento, i * 40);
+        }
+    </script>
+</body>
+</html>
